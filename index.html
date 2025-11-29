@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Nights at Freddy's</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a0d00 0%, #330000 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff4444;
+            text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+            animation: flicker 3s infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            75% { opacity: 0.9; }
+        }
+
+        .subtitle {
+            color: #999;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: #ff4444;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            border: 2px solid #8b0000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.6);
+        }
+
+        h2 {
+            color: #ff4444;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: rgba(20, 0, 0, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #660000;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .character-card:hover {
+            transform: scale(1.05);
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .character-card h3 {
+            color: #ff6666;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .warning-box {
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); }
+        }
+
+        .warning-box h3 {
+            color: #ff4444;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid #8b0000;
+        }
+
+        .camera-screen {
+            background: #000;
+            border: 3px solid #333;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .btn {
+            background: #8b0000;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FIVE NIGHTS AT FREDDY'S</h1>
+        <p class="subtitle">Você consegue sobreviver até às 6 AM?</p>
+    </header>
+
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#personagens">Personagens</a>
+        <a href="#historia">História</a>
+        <a href="#jogos">Jogos</a>
+    </nav>
+
+    <div class="container">
+        <div class="warning-box">
+            <h3>⚠️ AVISO DE SEGURANÇA</h3>
+            <p>Freddy Fazbear's Pizza não se responsabiliza por ferimentos, desaparecimentos ou morte. Os animatrônicos podem se mover à noite devido a seus servomotores travarem.</p>
+        </div>
+
+        <section id="sobre" class="section">
+            <h2>Sobre o Jogo</h2>
+            <p>Five Nights at Freddy's é uma franquia de jogos de terror de sobrevivência criada por Scott Cawthon. Você assume o papel de um guarda noturno na Freddy Fazbear's Pizza, uma pizzaria familiar com animatrônicos que ganham vida durante a noite.</p>
+            <div class="camera-screen">
+                <p>>>> SISTEMA DE CÂMERAS ATIVO</p>
+                <p>>>> MONITORANDO: SHOW STAGE</p>
+                <p>>>> ENERGIA RESTANTE: 100%</p>
+            </div>
+        </section>
+
+        <section id="personagens" class="section">
+            <h2>Personagens Principais</h2>
+            <div class="characters">
+                <div class="character-card">
+                    <h3>🐻 Freddy Fazbear</h3>
+                    <p>O líder da banda e mascote principal da pizzaria. Um urso marrom com cartola e gravata borboleta.</p>
+                </div>
+                <div class="character-card">
+                    <h3>🐰 Bonnie</h3>
+                    <p>O guitarrista roxo da banda. Conhecido por ser um dos animatrônicos mais agressivos durante a noite.</p>
+                </div>
+                <div class="character-card">
+                    <h3>🐤 Chica</h3>
+                    <p>A galinha amarela que adora pizza. Frequentemente vista com seu cupcake, Mr. Cupcake.</p>
+                </div>
+                <div class="character-card">
+                    <h3>🦊 Foxy</h3>
+                    <p>A raposa pirata fora de serviço. Corre pelos corredores quando não é vigiada adequadamente.</p>
+                </div>
+                <div class="character-card">
+                    <h3>👻 Golden Freddy</h3>
+                    <p>Um animatrônico misterioso e fantasmagórico. Sua aparição geralmente resulta em consequências terríveis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="historia" class="section">
+            <h2>A História Sombria</h2>
+            <p>A Freddy Fazbear's Pizza era um restaurante familiar popular nos anos 80 e 90. No entanto, a pizzaria esconde segredos obscuros envolvendo o desaparecimento de crianças e o "Incidente de 87".</p>
+            <p>Os animatrônicos, que deveriam entreter as crianças durante o dia, vagam livremente à noite, procurando por intrusos. Rumores sugerem que os robôs estão possuídos pelas almas das crianças desaparecidas.</p>
+            <button class="btn" onclick="alert('Os segredos estão enterrados profundamente... Você realmente quer saber?')">Descobrir Mais</button>
+        </section>
+
+        <section id="jogos" class="section">
+            <h2>Jogos da Franquia</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's (2014)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's 2 (2014)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's 3 (2015)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's 4 (2015)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's: Sister Location (2016)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Freddy Fazbear's Pizzeria Simulator (2017)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's: Help Wanted (2019)</li>
+                <li style="padding: 0.5rem; border-left: 3px solid #ff0000; margin: 0.5rem 0; padding-left: 1rem;">🎮 Five Nights at Freddy's: Security Breach (2021)</li>
+            </ul>
+        </section>
+
+        <div class="warning-box">
+            <h3>💀 Regra de Ouro</h3>
+            <p>"Se você for pego após o horário, por qualquer motivo, você será recheado dentro de um traje de Freddy Fazbear cheio de crossbeams, fios e animatronic devices..."</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Freddy Fazbear's Pizza © 1987-2024</p>
+        <p style="color: #666; margin-top: 0.5rem; font-size: 0.9rem;">Site não oficial - Feito por fãs para fãs</p>
+        <p style="color: #ff4444; margin-top: 1rem;">🎭 "It's me..."</p>
+    </footer>
+
+    <script>
+        // Efeito de tremor aleatório no título
+        setInterval(() => {
+            const header = document.querySelector('h1');
+            if (Math.random() > 0.95) {
+                header.style.transform = 'translateX(' + (Math.random() * 4 - 2) + 'px)';
+                setTimeout(() => {
+                    header.style.transform = 'translateX(0)';
+                }, 100);
+            }
+        }, 100);
+
+        // Sons de clique nos cards
+        document.querySelectorAll('.character-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.background = 'rgba(139, 0, 0, 0.5)';
+                setTimeout(() => {
+                    this.style.background = 'rgba(20, 0, 0, 0.8)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
